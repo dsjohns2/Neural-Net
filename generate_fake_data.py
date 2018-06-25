@@ -13,7 +13,7 @@ def generate_data():
 		x7 = random.random()
 		x8 = random.random()
 		x9 = random.random()
-		sum = x1 + x5 + x8
+		sum = x1 + x5 + x6 + x8 - x9
 		if(sum > 2):
 			y = 2
 		elif(sum > 1):
