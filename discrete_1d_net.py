@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 class Net(nn.Module):
 	def __init__(self):
 		super(Net, self).__init__()
-		self.num_input_params = 2
+		self.num_input_params = 1
 		self.num_classes = 1
 		self.fc1 = nn.Linear(self.num_input_params, 120)
 		self.fc2 = nn.Linear(120, 120)
@@ -61,11 +61,20 @@ for epoch in range(0, num_epochs):
 	print("Loss: " + str(average_loss))
 	
 # View Net
-table_size = 5
+table_size = 10
 for i in range(table_size):
-	for j in range(table_size):
-		X = np.array([i, j])
-		X = X.astype(np.float32)
-		X = torch.from_numpy(X)
-		print(net(X), end=' ')
-	print()
+	X = np.array([i])
+	X = X.astype(np.float32)
+	X = torch.from_numpy(X)
+	print(net(X), end=' ')
+print()
+
+x_vals = np.arange(0, 10, .01)
+y_vals = []
+for x in x_vals:
+	x = np.array([x])
+	x = x.astype(np.float32)
+	x = torch.from_numpy(x)
+	y_vals.append(net(x))
+plt.plot(x_vals, y_vals)
+plt.savefig("1d_net.png")
